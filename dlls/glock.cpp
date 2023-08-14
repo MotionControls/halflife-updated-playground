@@ -80,12 +80,12 @@ bool CGlock::Deploy()
 
 void CGlock::SecondaryAttack()
 {
-	GlockFire(0.1, 0.2, false);
+	GlockFire(0.0, 0.01, false);
 }
 
 void CGlock::PrimaryAttack()
 {
-	GlockFire(0.01, 0.3, true);
+	GlockFire(0.0, 0.01, false);
 }
 
 void CGlock::GlockFire(float flSpread, float flCycleTime, bool fUseAutoAim)
@@ -163,10 +163,14 @@ void CGlock::Reload()
 
 	bool iResult;
 
+	/*
 	if (m_iClip == 0)
 		iResult = DefaultReload(17, GLOCK_RELOAD, 1.5);
 	else
 		iResult = DefaultReload(17, GLOCK_RELOAD_NOT_EMPTY, 1.5);
+	*/
+
+	iResult = DefaultReload(17, GLOCK_RELOAD, 0.1);
 
 	if (iResult)
 	{
@@ -184,7 +188,7 @@ void CGlock::WeaponIdle()
 
 	if (m_flTimeWeaponIdle > UTIL_WeaponTimeBase())
 		return;
-
+	
 	// only idle if the slid isn't back
 	if (m_iClip != 0)
 	{

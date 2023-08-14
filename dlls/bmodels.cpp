@@ -69,6 +69,10 @@ void CFuncWall::Spawn()
 
 	// If it can't move/go away, it's really part of the world
 	pev->flags |= FL_WORLDBRUSH;
+
+	/* Make wall glow. */
+	pev->effects = EF_BRIGHTLIGHT;
+	ALERT(at_console, "Is it me you're looking for?\n");
 }
 
 
